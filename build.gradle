@@ -31,7 +31,7 @@ apply plugin: "net.corda.plugins.cordapp"
 // https://jitpack.io/com/github/mycordaapp/registry/<version>
 //
 group "com.github.mycordaapp"
-version "0.0.3"
+version "0.0.4"
 
 cordapp {
     targetPlatformVersion 9
