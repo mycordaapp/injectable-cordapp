@@ -10,7 +10,6 @@ buildscript {
     }
 
 
-
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71"
         classpath "net.corda.plugins:cordapp:5.0.12"
@@ -32,7 +31,7 @@ apply plugin: "net.corda.plugins.cordapp"
 // https://jitpack.io/com/github/mycordaapp/registry/<version>
 //
 group "com.github.mycordaapp"
-version "0.0.1"
+version "0.0.2"
 
 cordapp {
     targetPlatformVersion 9
@@ -86,7 +85,5 @@ dependencies {
     cordaRuntime "net.corda:corda:4.7"
 
     testCompile "net.corda:corda-node-driver:4.7"
-
-
 }
 
