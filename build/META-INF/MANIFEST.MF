@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Cordapp-Contract-Vendor: myordaapp
+Cordapp-Contract-Version: 1
+Cordapp-Contract-Name: Injectbale Contracts
+Target-Platform-Version: 9
+Sealed: true
+Min-Platform-Version: 9
+Cordapp-Contract-Licence: Proprietary
+
+Name: mycorda/app/injectable/InjectableContract$Companion.class
+SHA-256-Digest: bqXI4XU57gnMNrwxH02reZLUCFSAULxflH7u7XwR60o=
+
+Name: mycorda/app/injectable/InjectableLedgerTransaction$DefaultImpls.
+ class
+SHA-256-Digest: enVFI4oACTtxiNht5vZckihoq/WZMl8vzodxlkiI+78=
+
+Name: mycorda/app/injectable/InjectableLedgerTransaction.class
+SHA-256-Digest: 1mplEcHkTo2TukmO6kqeXvIw3Y7shaDiw8OCJT1IAak=
+
+Name: mycorda/app/injectable/InjectableTransactionBuilder.class
+SHA-256-Digest: YJoEHrRXfVbM+eZCPcJTB9MvTgndK2+W3uECKqH19Ug=
+
+Name: META-INF/injectable-cordapp.kotlin_module
+SHA-256-Digest: axXVpG94WclLeDbTIg/suumPvgogKrevDD8x1F3Q5+0=
+
+Name: mycorda/app/injectable/InjectableTransactionBuilder$DefaultImpls
+ .class
+SHA-256-Digest: vsPa/7FQYgKTbW61W+uAjZJG8MaJSIsVQNfVrgz85hg=
+
+Name: mycorda/app/injectable/InjectableContract.class
+SHA-256-Digest: dEo21j+Jiqd5MuPNOXqdM9FZpuf3vnWiRz6arGP/yAA=
+
+Name: mycorda/app/injectable/LedgerTransactionDelegate.class
+SHA-256-Digest: kl4jQRDktNNrj1aUEzO7EWxx/3UKjunP31TfoyhZaBo=
+
+Name: mycorda/app/injectable/TransactionBuilderDelegate.class
+SHA-256-Digest: K/hv3zeV3exhhaOAOiGQ+AmEeYqqpaBJfrqJibrutww=
+
+Name: dummy.jar
+SHA-256-Digest: /9cN3XEDHndhvWRoUJbnEYZlz+59U6CrJYr1CEYgX00=
+
+Name: mycorda/app/injectable/SimpleLedgerTransaction.class
+SHA-256-Digest: 7o23DThbhauHuZWfeeZk2shFuMvnd9MfGvE7hjYta/U=
+

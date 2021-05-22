@@ -1,0 +1,92 @@
+buildscript {
+    ext {
+        kotlin_version = "1.2.71"
+        corda_release_version = "4.7"
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://software.r3.com/artifactory/corda-releases" }
+    }
+
+
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71"
+        classpath "net.corda.plugins:cordapp:5.0.12"
+        //classpath "net.corda.plugins:quasar-utils:5.0.12"
+    }
+}
+
+plugins {
+    id 'java'
+    id "org.jetbrains.kotlin.jvm" version "1.2.71"
+}
+
+apply plugin: "kotlin"
+apply plugin: 'maven'
+apply plugin: "net.corda.plugins.cordapp"
+
+//
+// Will be published to jitpack by github at:
+// https://jitpack.io/com/github/mycordaapp/registry/<version>
+//
+group "com.github.mycordaapp"
+version "0.0.1"
+
+cordapp {
+    targetPlatformVersion 9
+    minimumPlatformVersion 9
+
+    contract {
+        name "Injectbale Contracts"
+        vendor "myordaapp"
+        licence "Proprietary"
+        versionId 1
+    }
+}
+
+//apply plugin: "net.corda.plugins.quasar-utils"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group "mycorda.app.injectable"
+version "0.0.1"
+
+repositories {
+    mavenCentral()
+    maven { url "https://software.r3.com/artifactory/corda" }
+    maven { url "https://software.r3.com/artifactory/corda-lib" }
+    maven { url "https://repo.gradle.org/gradle/libs-releases" }
+    maven { url "https://jitpack.io" }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+    kotlinOptions {
+        languageVersion = "1.2"
+        apiVersion = "1.2"
+        jvmTarget = "1.8"
+        javaParameters = true
+    }
+}
+
+jar {
+    // Make JAR checksums hash repeatable
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
+
+    cordaCompile "net.corda:corda-core:4.7"
+    cordaRuntime "net.corda:corda-node-api:4.7"
+    cordaRuntime "net.corda:corda:4.7"
+
+    testCompile "net.corda:corda-node-driver:4.7"
+
+
+}
+
