@@ -9,11 +9,9 @@ buildscript {
         maven { url "https://software.r3.com/artifactory/corda-releases" }
     }
 
-
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71"
         classpath "net.corda.plugins:cordapp:5.0.12"
-        //classpath "net.corda.plugins:quasar-utils:5.0.12"
     }
 }
 
@@ -26,10 +24,14 @@ apply plugin: "kotlin"
 apply plugin: 'maven'
 apply plugin: "net.corda.plugins.cordapp"
 
+
+// Will be published to jitpack by github at the address below
+// Make sure a matching release tag is created using github UI and
+// note it may sometimes take a few minutes to publish
 //
-// Will be published to jitpack by github at:
-// https://jitpack.io/com/github/mycordaapp/registry/<version>
-//
+// https://jitpack.io/com/github/mycordaapp/injectable-cordapp/<version>
+// https://jitpack.io/com/github/mycordaapp/injectable-cordapp/<version>/build.log
+
 group "com.github.mycordaapp"
 version "0.0.5"
 
@@ -45,13 +47,9 @@ cordapp {
     }
 }
 
-//apply plugin: "net.corda.plugins.quasar-utils"
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-group "mycorda.app.injectable"
-version "0.0.1"
 
 repositories {
     mavenCentral()
@@ -76,14 +74,13 @@ jar {
     reproducibleFileOrder = true
 }
 
-
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
 
     cordaCompile "net.corda:corda-core:4.7"
     cordaRuntime "net.corda:corda-node-api:4.7"
     cordaRuntime "net.corda:corda:4.7"
 
-    testCompile "net.corda:corda-node-driver:4.7"
+    testImplementation "net.corda:corda-node-driver:4.7"
 }
 
