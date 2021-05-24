@@ -8,6 +8,7 @@ import net.corda.core.contracts.StateAndRef
 import net.corda.core.contracts.TransactionState
 import net.corda.core.identity.Party
 import net.corda.core.internal.castIfPossible
+import net.corda.core.internal.uncheckedCast
 import net.corda.core.node.NetworkParameters
 import net.corda.core.transactions.LedgerTransaction
 
@@ -23,15 +24,19 @@ interface InjectableLedgerTransaction {
     val notary: Party?
 
     fun <T : ContractState> outputsOfType(clazz: Class<T>): List<T> = outputs.mapNotNull { clazz.castIfPossible(it.data) }
-
     // reified not allowed on an interface
-    // what about if we make InjectableLedgerTransaction an abstract class instead
+    // what about if we make InjectableLedgerTransaction an abstract class instead?
     //inline fun <reified T : ContractState> outputsOfType(): List<T> = outputsOfType(T::class.java)
 
 
     // mirror LedgerTransaction
     val commands: List<CommandWithParties<CommandData>>
     val attachments: List<Attachment>
+
+    val inputStates: List<ContractState> get() = inputs.map { it.state.data }
+    val referenceStates: List<ContractState> get() = references.map { it.state.data }
+    fun <T : ContractState> inRef(index: Int): StateAndRef<T> = uncheckedCast(inputs[index])
+
 
     fun verify()
 
