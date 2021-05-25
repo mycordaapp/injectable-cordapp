@@ -102,7 +102,7 @@ class TransactionBuilderDelegate(private val delegate: TransactionBuilder) : Inj
 
     override fun commands(): List<Command<*>> = delegate.commands()
     override fun verify(services: ServiceHub) {
-        TODO("Not yet implemented")
+        delegate.verify(services)
     }
 
 }

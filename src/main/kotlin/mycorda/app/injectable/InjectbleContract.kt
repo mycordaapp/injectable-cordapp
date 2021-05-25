@@ -2,6 +2,7 @@ package mycorda.app.injectable
 
 import net.corda.core.contracts.Contract
 import net.corda.core.transactions.LedgerTransaction
+import java.lang.RuntimeException
 
 /**
  * We cannot inject a LedgerTransaction easily (it is a closed class,
@@ -15,14 +16,15 @@ open class InjectableContract : Contract {
         @JvmStatic
         val ID = "mycorda.app.injectable.InjectableContract"
     }
+
     // entry point when running in TDD environment - there is a lightweight
     // InjectableLedgerTransaction
     open fun verify(tx: InjectableLedgerTransaction) {
-        TODO()
+        throw RuntimeException("verify(tx: InjectableLedgerTransaction) MUST be overridden")
     }
 
     // entry point when running in Corda - InjectableLedgerTransaction
-    // simple delegates to the real LedgerTransaction
+    // simple delegates to the real LedgerTransaction via LedgerTransactionDelegate
     override fun verify(tx: LedgerTransaction) {
         verify(LedgerTransactionDelegate(tx))
     }

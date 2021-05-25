@@ -33,7 +33,7 @@ apply plugin: "net.corda.plugins.cordapp"
 // https://jitpack.io/com/github/mycordaapp/injectable-cordapp/<version>/build.log
 
 group "com.github.mycordaapp"
-version "0.0.5"
+version "0.0.7"
 
 cordapp {
     targetPlatformVersion 9
@@ -65,6 +65,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
         apiVersion = "1.2"
         jvmTarget = "1.8"
         javaParameters = true
+        //freeCompilerArgs = ['-Xjvm-default=compatibility']
     }
 }
 
