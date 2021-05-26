@@ -21,7 +21,7 @@ import java.security.PublicKey
  * Delegates to the genuine Corda TransactionBuilder.
  */
 
-class TransactionBuilderDelegate(private val delegate: TransactionBuilder) : InjectableTransactionBuilder {
+class TransactionBuilderDelegate(private val delegate: TransactionBuilder) : InjectableTransactionBuilder, CordaTransactionBuilder {
     override fun copy(): InjectableTransactionBuilder {
         delegate.copy()
         return this
@@ -103,6 +103,10 @@ class TransactionBuilderDelegate(private val delegate: TransactionBuilder) : Inj
     override fun commands(): List<Command<*>> = delegate.commands()
     override fun verify(services: ServiceHub) {
         delegate.verify(services)
+    }
+
+    override fun asCordaTransactionBuilder(): TransactionBuilder {
+        return delegate
     }
 
 }

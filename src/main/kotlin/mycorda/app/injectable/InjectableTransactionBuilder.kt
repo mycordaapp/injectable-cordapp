@@ -16,6 +16,7 @@ import net.corda.core.identity.Party
 import net.corda.core.internal.requiredContractClassName
 import net.corda.core.node.ServiceHub
 import net.corda.core.node.services.AttachmentId
+import net.corda.core.transactions.TransactionBuilder
 import java.security.PublicKey
 
 /**
@@ -90,4 +91,16 @@ interface InjectableTransactionBuilder {
     fun commands(): List<Command<*>>
 
     fun verify(services: ServiceHub)
+
+
+}
+
+interface CordaTransactionBuilder {
+    /** if running inside a flow, then we
+     *  need to get the real TransactionBuilder
+     *
+     *  If running inside the mock / adapter layer this will
+     *  raise an exception
+     */
+    fun asCordaTransactionBuilder () : TransactionBuilder
 }
