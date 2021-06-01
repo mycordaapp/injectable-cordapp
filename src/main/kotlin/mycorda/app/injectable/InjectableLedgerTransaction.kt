@@ -23,7 +23,8 @@ interface InjectableLedgerTransaction {
     val outputs: List<TransactionState<ContractState>>
     val notary: Party?
 
-    fun <T : ContractState> outputsOfType(clazz: Class<T>): List<T> = outputs.mapNotNull { clazz.castIfPossible(it.data) }
+    fun <T : ContractState> outputsOfType(clazz: Class<T>): List<T> =
+        outputs.mapNotNull { clazz.castIfPossible(it.data) }
     // reified not allowed on an interface
     // what about if we make InjectableLedgerTransaction an abstract class instead?
     //inline fun <reified T : ContractState> outputsOfType(): List<T> = outputsOfType(T::class.java)
@@ -42,6 +43,9 @@ interface InjectableLedgerTransaction {
 
 }
 
+/**
+ * Simply delegate to real Corda version
+ */
 class LedgerTransactionDelegate(private val delegate: LedgerTransaction) : InjectableLedgerTransaction {
     override val inputs: List<StateAndRef<ContractState>> = delegate.inputs
 
@@ -57,35 +61,4 @@ class LedgerTransactionDelegate(private val delegate: LedgerTransaction) : Injec
 
     override val attachments: List<Attachment> = delegate.attachments
     override fun verify() = delegate.verify()
-}
-
-class SimpleLedgerTransaction(private val builder : InjectableTransactionBuilder) : InjectableLedgerTransaction {
-    override val inputs: List<StateAndRef<ContractState>>
-        get() = TODO("Not yet implemented")
-    override val references: List<StateAndRef<ContractState>> = builder.referenceStates() as List<StateAndRef<ContractState>>
-    override val networkParameters: NetworkParameters? = null
-    override val outputs: List<TransactionState<ContractState>> = builder.outputStates() as List<TransactionState<ContractState>>
-    override val notary: Party? =  null
-    override val commands: List<CommandWithParties<CommandData>> = builder.commands() as List<CommandWithParties<CommandData>>
-    override val attachments: List<Attachment> = emptyList() // builder.attachments()
-    override fun verify() {
-        //attachments.forEach { println(it)}
-
-        val x = outputs[0].contract
-        println("here i am $x")
-        // find the contract class
-
-        val contract = Class.forName(x)?.newInstance() as InjectableContract
-
-        contract.verify(this)
-
-
-
-
-
-        // call
-
-
-    }
-
 }

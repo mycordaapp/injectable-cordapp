@@ -33,7 +33,7 @@ apply plugin: "net.corda.plugins.cordapp"
 // https://jitpack.io/com/github/mycordaapp/injectable-cordapp/<version>/build.log
 
 group "com.github.mycordaapp"
-version "0.0.8"
+version "0.0.9"
 
 cordapp {
     targetPlatformVersion 9
